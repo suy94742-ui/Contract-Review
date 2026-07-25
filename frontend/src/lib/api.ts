@@ -13,7 +13,7 @@ const API_BASE = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001').
   /\/+$/,
   '',
 );
-const DEFAULT_TIMEOUT_MS = 25_000;
+const DEFAULT_TIMEOUT_MS = 90_000;
 
 type ApiErrorCode = ApiError['error']['code'];
 const API_ERROR_CODES: ApiErrorCode[] = [

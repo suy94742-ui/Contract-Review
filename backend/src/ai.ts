@@ -8,7 +8,7 @@ const DISCLAIMER =
   "本结果由 AI 生成，仅用于风险提示，不构成法律意见；重要合同请咨询专业律师。";
 const LEVELS = ["high", "medium", "low"] as const;
 const CHECKLIST_STATUS = ["pass", "warning", "unknown"];
-const AI_TIMEOUT_MS = 45000;
+const AI_TIMEOUT_MS = 90000;
 
 type Level = (typeof LEVELS)[number];
 
