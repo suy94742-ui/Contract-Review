@@ -1,6 +1,19 @@
 # 员工 1 交接
 
 ## 当前状态
+进行中（第一阶段收尾，准备进入第二阶段）
+
+## 已完成
+- [x] 推送 AGENTS.md 到 main 分支
+- [x] 创建并冻结 `shared/api/analyze.schema.json`
+- [x] 创建 `shared/api/request.example.json`
+- [x] 创建 `shared/api/response.example.json`
+- [x] 创建 `backend/prompts/contract-analysis.md` 初稿
+- [x] 创建 `docs/acceptance-checklist.md`
+- [x] 创建 `docs/demo-script.md`
+- [x] 创建 `README.md` 骨架
+- [x] 创建 `handoff/employee-1.md`
+- [x] **主 Demo 合同选定：租房合同**（`request.example.json` 中的示例即为初稿）
 进行中（第一阶段 0～15 分钟）
 
 ## 已完成
@@ -45,5 +58,7 @@ node -e "JSON.parse(require('fs').readFileSync('shared/api/response.example.json
 - **员工 2**：类型文件 `frontend/src/types/analyze.ts` 请与 schema 定义保持一致
 
 ## 最新可合并提交
+- 分支：`main`
+- commit：`ee31181` docs: add acceptance checklist, demo script and README skeleton
 - 分支：`main`
 - commit：`feat(api): freeze analyze endpoint schema, examples and system prompt`
