@@ -1,27 +1,22 @@
 # 员工 1 交接
 
 ## 当前状态
-进行中（第一阶段收尾，准备进入第二阶段）
+进行中（第二阶段：Prompt 自测与契约完善）
 
 ## 已完成
 - [x] 推送 AGENTS.md 到 main 分支
 - [x] 创建并冻结 `shared/api/analyze.schema.json`
-- [x] 创建 `shared/api/request.example.json`
+- [x] 创建 `shared/api/request.example.json`（主 Demo：租房合同）
 - [x] 创建 `shared/api/response.example.json`
 - [x] 创建 `backend/prompts/contract-analysis.md` 初稿
 - [x] 创建 `docs/acceptance-checklist.md`
 - [x] 创建 `docs/demo-script.md`
 - [x] 创建 `README.md` 骨架
 - [x] 创建 `handoff/employee-1.md`
-- [x] **主 Demo 合同选定：租房合同**（`request.example.json` 中的示例即为初稿）
-进行中（第一阶段 0～15 分钟）
-
-## 已完成
-- [x] 推送 AGENTS.md 到 main 分支
-- [x] 创建并冻结 `shared/api/analyze.schema.json`
-- [x] 创建 `shared/api/request.example.json`
-- [x] 创建 `shared/api/response.example.json`
-- [x] 创建 `backend/prompts/contract-analysis.md` 初稿
+- [x] 创建根目录 `.gitignore`
+- [x] 创建 `backend/.env.example`
+- [x] 主 Demo 合同选定：租房合同
+- [x] 请求/响应示例结构校验通过
 
 ## 启动命令
 ```bash
@@ -30,18 +25,17 @@
 
 ## 验证命令和结果
 ```bash
-# 检查 schema 语法
-npx ajv-cli validate -s shared/api/analyze.schema.json -d shared/api/request.example.json
-
-# 检查响应示例是否合法 JSON
-node -e "JSON.parse(require('fs').readFileSync('shared/api/response.example.json'))"
+# 请求/响应示例 JSON 结构校验
+python3 /tmp/validate_schema.py
+# 结果：请求示例 OK / 响应示例 OK
 ```
 
 ## 对外接口或导出
 - `shared/api/analyze.schema.json`：请求/响应 JSON Schema，含完整类型定义
-- `shared/api/request.example.json`：POST /analyze 请求示例（租房合同）
-- `shared/api/response.example.json`：成功响应示例（5 个风险）
+- `shared/api/request.example.json`：POST /analyze 请求示例（租房合同，5 个核心风险）
+- `shared/api/response.example.json`：成功响应示例
 - `backend/prompts/contract-analysis.md`：AI 系统 Prompt 初稿
+- `backend/.env.example`：后端环境变量模板
 
 ## 依赖与环境变量
 - 无特殊依赖
@@ -59,6 +53,4 @@ node -e "JSON.parse(require('fs').readFileSync('shared/api/response.example.json
 
 ## 最新可合并提交
 - 分支：`main`
-- commit：`ee31181` docs: add acceptance checklist, demo script and README skeleton
-- 分支：`main`
-- commit：`feat(api): freeze analyze endpoint schema, examples and system prompt`
+- commit：`8367709` chore(backend): add .env.example with OPENAI config
