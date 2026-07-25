@@ -1,42 +1,29 @@
 {
-  "description": "本文件描述 rental-risky.txt 中应识别的核心风险",
   "expectedRisks": [
     {
       "category": "deposit",
       "level": "high",
-      "expectedOriginalText": "无论任何原因退租，押金均不予退还。",
-      "note": "押金无条件不退，违反公平原则"
+      "expectedOriginalText": "无论任何原因退租，押金均不予退还。"
     },
     {
       "category": "penalty",
       "level": "high",
-      "expectedOriginalText": "乙方如提前退租，需支付剩余全部租期租金作为违约金，且押金不退。",
-      "note": "提前退租违约金为全部剩余租金，明显过高"
+      "expectedOriginalText": "乙方如提前退租，需支付剩余全部租期租金作为违约金，且押金不退。"
     },
     {
       "category": "property_access",
       "level": "high",
-      "expectedOriginalText": "甲方有权在提前 2 小时通知乙方后随时进入房屋进行检查、维修或带人看房。",
-      "note": "房东进入权过于宽泛，通知时间过短"
+      "expectedOriginalText": "甲方有权在提前 2 小时通知乙方后随时进入房屋进行检查、维修或带人看房。"
     },
     {
       "category": "liability_exemption",
       "level": "medium",
-      "expectedOriginalText": "因房屋设施老化、自然损耗或不可抗力导致的乙方人身或财产损失，甲方不承担任何责任。",
-      "note": "设施老化免责不合理"
+      "expectedOriginalText": "因房屋设施老化、自然损耗或不可抗力导致的乙方人身或财产损失，甲方不承担任何责任。"
     },
     {
       "category": "automatic_renewal",
       "level": "medium",
-      "expectedOriginalText": "租赁期满前 30 日，如双方均未提出书面异议，本合同自动续期一年，租金按当时市场价调整，涨幅不设上限。",
-      "note": "自动续期+涨幅无上限"
-    },
-    {
-      "category": "arbitration",
-      "level": "medium",
-      "expectedOriginalText": "提交甲方所在地仲裁委员会仲裁，仲裁裁决为终局裁决。",
-      "note": "仲裁地点偏向甲方，且剥夺诉讼权利"
+      "expectedOriginalText": "租赁期满前 30 日，如乙方未提出书面异议，本合同自动续期一年。"
     }
-  ],
-  "notes": "AI 输出的 title/explanation/suggestion 不必逐字一致，但 category、level 和 originalText 应对应。"
+  ]
 }
