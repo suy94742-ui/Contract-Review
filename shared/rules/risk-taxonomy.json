@@ -1,0 +1,90 @@
+{
+  "version": "1.0.0",
+  "description": "合同风险分类体系，与 shared/api/analyze.schema.json 中的 category 枚举保持一致",
+  "categories": [
+    {
+      "id": "deposit",
+      "label": "押金",
+      "description": "押金退还条件、扣押金理由等",
+      "commonIn": ["rental"]
+    },
+    {
+      "id": "penalty",
+      "label": "违约金",
+      "description": "提前解约、违约时的赔偿金额",
+      "commonIn": ["rental", "employment"]
+    },
+    {
+      "id": "compensation",
+      "label": "赔偿",
+      "description": "损失赔偿责任的分配",
+      "commonIn": ["rental", "employment", "part_time"]
+    },
+    {
+      "id": "unilateral_change",
+      "label": "单方变更",
+      "description": "一方可单方面修改合同内容、价格或服务",
+      "commonIn": ["user_agreement", "employment"]
+    },
+    {
+      "id": "automatic_renewal",
+      "label": "自动续期/续费",
+      "description": "到期自动续约或扣费",
+      "commonIn": ["rental", "user_agreement"]
+    },
+    {
+      "id": "termination",
+      "label": "解除/终止",
+      "description": "合同解除条件不对等",
+      "commonIn": ["employment", "rental", "part_time"]
+    },
+    {
+      "id": "liability_exemption",
+      "label": "免责",
+      "description": "过度免除一方的安全保障或维护责任",
+      "commonIn": ["rental", "user_agreement"]
+    },
+    {
+      "id": "privacy",
+      "label": "隐私/个人信息",
+      "description": "过度收集或授权使用个人信息",
+      "commonIn": ["user_agreement", "employment"]
+    },
+    {
+      "id": "non_compete",
+      "label": "竞业限制",
+      "description": "离职后竞业限制范围、期限、补偿",
+      "commonIn": ["employment"]
+    },
+    {
+      "id": "confidentiality",
+      "label": "保密",
+      "description": "保密范围过宽、无期限或无补偿",
+      "commonIn": ["employment", "part_time"]
+    },
+    {
+      "id": "arbitration",
+      "label": "仲裁",
+      "description": "强制仲裁、仲裁地点偏向一方",
+      "commonIn": ["rental", "employment", "user_agreement"]
+    },
+    {
+      "id": "jurisdiction",
+      "label": "管辖",
+      "description": "诉讼管辖地点偏向一方",
+      "commonIn": ["rental", "employment", "user_agreement"]
+    },
+    {
+      "id": "property_access",
+      "label": "房屋/财产进入权",
+      "description": "房东或平台可随时进入、检查",
+      "commonIn": ["rental"]
+    },
+    {
+      "id": "other",
+      "label": "其他",
+      "description": "未归类风险",
+      "commonIn": []
+    }
+  ]
+}
