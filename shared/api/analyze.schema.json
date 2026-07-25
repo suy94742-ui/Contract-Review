@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Contract Analysis API",
+  "description": "合同风险分析接口契约。所有请求和响应必须符合本 Schema。",
+  "definitions": {
+    "ContractType": {
+      "type": "string",
+      "enum": ["rental", "employment", "user_agreement", "part_time", "other"]
+    },
+    "RiskLevel": {
+      "type": "string",
+      "enum": ["high", "medium", "low"]
+    },
+    "Source": {
+      "type": "string",
+      "enum": ["ai", "demo_fallback"]
+    },
+    "ChecklistStatus": {
+      "type": "string",
+      "enum": ["pass", "warning", "unknown"]
+    },
+    "RiskCategory": {
+      "type": "string",
+      "enum": [
+        "deposit",
+        "penalty",
+        "compensation",
+        "unilateral_change",
+        "automatic_renewal",
+        "termination",
+        "liability_exemption",
+        "privacy",
+        "non_compete",
+        "confidentiality",
+        "arbitration",
+        "jurisdiction",
+        "property_access",
+        "other"
+      ]
+    },
+    "Risk": {
+      "type": "object",
+      "required": ["id", "level", "category", "title", "originalText", "explanation", "suggestion"],
+      "properties": {
+        "id": { "type": "string", "description": "风险唯一标识，由后端生成，如 risk_1" },
+        "level": { "$ref": "#/definitions/RiskLevel" },
+        "category": { "$ref": "#/definitions/RiskCategory" },
+        "title": { "type": "string", "description": "风险标题，简洁明了" },
+        "originalText": { "type": "string", "description": "合同原文摘录，必须逐字来自输入文本" },
+        "explanation": { "type": "string", "description": "人话解释：这条条款对用户有什么潜在危害" },
+        "suggestion": { "type": "string", "description": "修改建议：如何改得更公平" }
+      }
+    },
+    "ChecklistItem": {
+      "type": "object",
+      "required": ["id", "label", "status"],
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string", "description": "检查项名称" },
+        "status": { "$ref": "#/definitions/ChecklistStatus" },
+        "note": { "type": "string", "description": "补充说明" }
+      }
+    },
+    "RiskCount": {
+      "type": "object",
+      "required": ["total", "high", "medium", "low"],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "high": { "type": "integer", "minimum": 0 },
+        "medium": { "type": "integer", "minimum": 0 },
+        "low": { "type": "integer", "minimum": 0 }
+      }
+    }
+  },
+
+  "request": {
+    "type": "object",
+    "required": ["contractType", "text"],
+    "properties": {
+      "contractType": {
+        "$ref": "#/definitions/ContractType",
+        "description": "合同类型"
+      },
+      "region": {
+        "type": "string",
+        "description": "地区，可选，空字符串等同于未提供"
+      },
+      "text": {
+        "type": "string",
+        "description": "合同正文，去除首尾空格后至少 20 个字符，最大 50000 个字符"
+      }
+    }
+  },
+
+  "successResponse": {
+    "type": "object",
+    "required": ["requestId", "source", "summary", "overallRisk", "riskCount", "risks", "checklist", "disclaimer"],
+    "properties": {
+      "requestId": { "type": "string", "description": "请求唯一标识" },
+      "source": { "$ref": "#/definitions/Source" },
+      "summary": { "type": "string", "description": "总体结论摘要" },
+      "overallRisk": { "$ref": "#/definitions/RiskLevel" },
+      "riskCount": { "$ref": "#/definitions/RiskCount" },
+      "risks": {
+        "type": "array",
+        "items": { "$ref": "#/definitions/Risk" },
+        "description": "风险列表，按 high → medium → low 排序"
+      },
+      "checklist": {
+        "type": "array",
+        "items": { "$ref": "#/definitions/ChecklistItem" }
+      },
+      "disclaimer": {
+        "type": "string",
+        "description": "免责声明，即使 AI 未返回也由后端补齐"
+      }
+    }
+  },
+
+  "errorResponse": {
+    "type": "object",
+    "required": ["error"],
+    "properties": {
+      "error": {
+        "type": "object",
+        "required": ["code", "message", "requestId"],
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": ["INVALID_INPUT", "TEXT_TOO_LONG", "AI_TIMEOUT", "AI_INVALID_RESPONSE", "INTERNAL_ERROR"]
+          },
+          "message": { "type": "string" },
+          "requestId": { "type": "string" }
+        }
+      }
+    }
+  }
+}

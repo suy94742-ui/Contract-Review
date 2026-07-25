@@ -1,0 +1,98 @@
+{
+  "requestId": "req_demo_001",
+  "source": "ai",
+  "summary": "这份合同存在较明显的押金、违约责任和房东单方权利风险。",
+  "overallRisk": "high",
+  "riskCount": {
+    "total": 5,
+    "high": 3,
+    "medium": 2,
+    "low": 0
+  },
+  "risks": [
+    {
+      "id": "risk_1",
+      "level": "high",
+      "category": "deposit",
+      "title": "押金可能无条件不退",
+      "originalText": "无论任何原因退租，押金均不予退还。",
+      "explanation": "这意味着即使承租人没有造成损失，也可能无法拿回押金。",
+      "suggestion": "将条款改为扣除实际欠费和有凭证的损失后，剩余押金在约定期限内退还。"
+    },
+    {
+      "id": "risk_2",
+      "level": "high",
+      "category": "penalty",
+      "title": "提前退租违约金过高",
+      "originalText": "乙方如提前退租，需支付剩余全部租期租金作为违约金，且押金不退。",
+      "explanation": "提前退租需支付全部剩余租金，金额可能远超实际损失，法院通常不支持如此高额的违约金。",
+      "suggestion": "改为按实际损失计算违约金，或约定合理上限（如 1～2 个月租金）。"
+    },
+    {
+      "id": "risk_3",
+      "level": "high",
+      "category": "property_access",
+      "title": "房东可随时进入房屋",
+      "originalText": "甲方有权在提前 2 小时通知乙方后随时进入房屋进行检查、维修或带人看房。",
+      "explanation": "2 小时通知过短，且未限制进入时间、方式和次数，严重影响承租人隐私和居住安宁。",
+      "suggestion": "约定提前 24～48 小时书面预约，限定合理时段，并明确紧急情况除外。"
+    },
+    {
+      "id": "risk_4",
+      "level": "medium",
+      "category": "liability_exemption",
+      "title": "房东过度免责",
+      "originalText": "因房屋设施老化、自然损耗或不可抗力导致的乙方人身或财产损失，甲方不承担任何责任。",
+      "explanation": "设施老化属于房东维护义务范围，完全免责可能导致租客维权困难。",
+      "suggestion": "区分房东过错、正常使用损耗和不可抗力，明确房东对房屋基本安全的维护责任。"
+    },
+    {
+      "id": "risk_5",
+      "level": "medium",
+      "category": "automatic_renewal",
+      "title": "自动续期条款不明确",
+      "originalText": "租赁期满前 30 日，如双方均未提出书面异议，本合同自动续期一年，租金按当时市场价调整。",
+      "explanation": "自动续期可能让租客在不知情的情况下继续受约束，且租金调整标准模糊。",
+      "suggestion": "取消自动续期，改为期满前双方明确书面确认；或约定租金涨幅上限。"
+    }
+  ],
+  "checklist": [
+    {
+      "id": "deposit",
+      "label": "押金退还条件是否明确",
+      "status": "warning",
+      "note": "当前条款存在无条件不退的表述。"
+    },
+    {
+      "id": "penalty",
+      "label": "违约金是否合理",
+      "status": "warning",
+      "note": "提前退租违约金为全部剩余租金，明显偏高。"
+    },
+    {
+      "id": "property_access",
+      "label": "房东进入房屋的条件是否清晰",
+      "status": "warning",
+      "note": "仅提前 2 小时通知，且范围过宽。"
+    },
+    {
+      "id": "liability",
+      "label": "免责条款是否公平",
+      "status": "warning",
+      "note": "房东对设施老化导致的损失完全免责。"
+    },
+    {
+      "id": "renewal",
+      "label": "续租/退租流程是否明确",
+      "status": "warning",
+      "note": "自动续期条款可能让租客被动续约。"
+    },
+    {
+      "id": "arbitration",
+      "label": "争议解决方式是否双方约定",
+      "status": "pass",
+      "note": "约定了仲裁，但地点偏向甲方所在地。"
+    }
+  ],
+  "disclaimer": "本结果由 AI 生成，仅用于风险提示，不构成法律意见；重要合同请咨询专业律师。"
+}
