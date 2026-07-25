@@ -2,22 +2,17 @@
 # 合同体检 Demo 冒烟测试脚本
 # 运行前确保后端服务已启动：cd backend && npm run dev
 
-set -e
-
 BASE_URL="${API_BASE:-http://localhost:3001}"
 PASS=0
 FAIL=0
 
-assert_json_contains() {
+check_json() {
   local json="$1"
   local key="$2"
   local expected="$3"
-  if echo "$json" | grep -q "\"$key\": \"$expected\"" || echo "$json" | grep -q "\"$key\":$expected" ; then
-    echo "  ✓ $key = $expected"
+  if python3 scripts/check_json.py "$json" "$key" "$expected"; then
     ((PASS++))
   else
-    echo "  ✗ $key 不匹配 (期望: $expected)"
-    echo "  响应: $json"
     ((FAIL++))
   fi
 }
@@ -29,7 +24,7 @@ echo ""
 # 1. 健康检查
 echo "[1/7] GET /health"
 RESP=$(curl -s "$BASE_URL/health")
-assert_json_contains "$RESP" "status" "ok"
+check_json "$RESP" "status" "ok"
 echo ""
 
 # 2. 正常分析请求（租房合同）
@@ -37,9 +32,17 @@ echo "[2/7] POST /analyze - 正常请求"
 RESP=$(curl -s -X POST "$BASE_URL/analyze" \
   -H "Content-Type: application/json" \
   -d '{"contractType":"rental","region":"上海","text":"房屋租赁合同。甲方王某，乙方李某。租赁期限2024年1月1日至12月31日。每月租金5000元，押金10000元。无论任何原因退租，押金均不予退还。"}')
-assert_json_contains "$RESP" "overallRisk" "high"
-assert_json_contains "$RESP" "source" "demo_fallback"
-assert_json_contains "$RESP" "requestId" "req_"
+check_json "$RESP" "overallRisk" "high"
+check_json "$RESP" "source" "demo_fallback"
+check_json "$RESP" "requestId" "req_"
+RISK_COUNT=$(echo "$RESP" | python3 -c "import sys,json; print(len(json.load(sys.stdin).get('risks',[])))")
+if [ "$RISK_COUNT" -gt 0 ]; then
+  echo "  ✓ risks count = $RISK_COUNT"
+  ((PASS++))
+else
+  echo "  ✗ risks 为空"
+  ((FAIL++))
+fi
 echo ""
 
 # 3. 空文本
@@ -48,7 +51,6 @@ RESP=$(curl -s -w "\n%{http_code}" -X POST "$BASE_URL/analyze" \
   -H "Content-Type: application/json" \
   -d '{"contractType":"rental","text":""}')
 HTTP_CODE=$(echo "$RESP" | tail -n1)
-BODY=$(echo "$RESP" | sed '$d')
 if [ "$HTTP_CODE" = "400" ]; then
   echo "  ✓ HTTP 400"
   ((PASS++))
@@ -95,7 +97,6 @@ RESP=$(curl -s -w "\n%{http_code}" -X POST "$BASE_URL/analyze" \
   -H "Content-Type: application/json" \
   -d "{\"contractType\":\"rental\",\"text\":\"$LONG_TEXT\"}")
 HTTP_CODE=$(echo "$RESP" | tail -n1)
-# 当前临时接口可能不校验长度，T+45 联调时更新
 if [ "$HTTP_CODE" = "413" ] || [ "$HTTP_CODE" = "200" ]; then
   echo "  ✓ HTTP $HTTP_CODE (413=正确, 200=临时接口)"
   ((PASS++))
