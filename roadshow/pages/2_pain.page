@@ -1,0 +1,122 @@
+pageType: content
+background:
+  type: solid
+  color: "$base"
+notes: 痛点 30 秒：签合同的人往往最没有议价能力。右边三条不是编的，全部摘自我们项目里的示例合同。
+elements:
+  - elementId: kicker
+    elementType: text
+    bounds: [70, 44, 220, 18]
+    content:
+      style: "$kicker"
+      wrap: false
+      align: [left, middle]
+      text: 01 · 痛点
+  - elementId: statement
+    elementType: text
+    bounds: [66, 84, 470, 150]
+    content:
+      fontSize: 33
+      bold: true
+      color: "$ink"
+      lineHeight: 1.4
+      align: [left, top]
+      text: |
+        <p>签合同的人，</p>
+        <p>往往是最没有</p>
+        <p>议价能力的人</p>
+  - elementId: stmt-line
+    elementType: shape
+    bounds: [72, 250, 72, 3]
+    shapeName: rect
+    fill: {type: solid, color: "$brass"}
+  - elementId: stmt-sub
+    elementType: text
+    bounds: [70, 272, 440, 52]
+    content:
+      fontSize: 14
+      color: "$muted"
+      lineHeight: 1.6
+      align: [left, top]
+      text: |
+        <p>押金、违约金、竞业限制、自动续费……</p>
+        <p>不利条款总是写得像"行业惯例"。</p>
+  - elementId: q1-bar
+    elementType: shape
+    bounds: [540, 88, 3, 82]
+    shapeName: rect
+    fill: {type: solid, color: "$brass"}
+  - elementId: q1-text
+    elementType: text
+    bounds: [558, 88, 336, 56]
+    content:
+      fontSize: 15
+      color: "$wine"
+      lineHeight: 1.5
+      align: [left, top]
+      text: |
+        <p>"无论任何原因退租，押金均不予退还。"</p>
+  - elementId: q1-src
+    elementType: text
+    bounds: [558, 148, 336, 16]
+    content:
+      style: "$small"
+      wrap: false
+      align: [left, middle]
+      text: —— 租房合同示例
+  - elementId: q2-bar
+    elementType: shape
+    bounds: [540, 208, 3, 82]
+    shapeName: rect
+    fill: {type: solid, color: "$brass"}
+  - elementId: q2-text
+    elementType: text
+    bounds: [558, 208, 336, 56]
+    content:
+      fontSize: 15
+      color: "$wine"
+      lineHeight: 1.5
+      align: [left, top]
+      text: |
+        <p>"离职后 3 年内不得入职竞争单位，</p>
+        <p>违约金 50 万元。"</p>
+  - elementId: q2-src
+    elementType: text
+    bounds: [558, 268, 336, 16]
+    content:
+      style: "$small"
+      wrap: false
+      align: [left, middle]
+      text: —— 劳动合同示例
+  - elementId: q3-bar
+    elementType: shape
+    bounds: [540, 328, 3, 82]
+    shapeName: rect
+    fill: {type: solid, color: "$brass"}
+  - elementId: q3-text
+    elementType: text
+    bounds: [558, 328, 336, 56]
+    content:
+      fontSize: 15
+      color: "$wine"
+      lineHeight: 1.5
+      align: [left, top]
+      text: |
+        <p>"到期前 24 小时自动扣取下期费用，</p>
+        <p>已扣费用不予退还。"</p>
+  - elementId: q3-src
+    elementType: text
+    bounds: [558, 388, 336, 16]
+    content:
+      style: "$small"
+      wrap: false
+      align: [left, middle]
+      text: —— 用户协议示例
+  - elementId: footnote
+    elementType: text
+    bounds: [70, 492, 620, 16]
+    content:
+      style: "$small"
+      wrap: false
+      align: [left, middle]
+      text: 以上条款均摘自本项目示例合同（assets/examples/），非虚构案例

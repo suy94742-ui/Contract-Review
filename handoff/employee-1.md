@@ -1,7 +1,18 @@
 # 员工 1 交接
 
 ## 当前状态
-**Prompt 调优完成，等待团队同步后进入整合阶段**
+**整合完成，全链路可演示**（冒烟 10/10，前端可跑完整流程）
+
+## 已完成（本轮整合）
+- [x] 合并员工 4 分支（`0468d9a`），三份示例合同逐字校验通过
+- [x] 集成员工 3 后端（validation + routes，文件经微信收到，非 Git 分支）
+- [x] 员工 1 最终连接：实现 `backend/src/ai.ts` 真实 AI 调用（25s 超时、去围栏、JSON 校验、ID/计数/排序/免责声明标准化）
+- [x] 移除员工 3 的 mock.ts（非降级路径冒充 `source:"ai"`，违反契约）
+- [x] 降级路径改为返回 `response.example.json` + `source: "demo_fallback"`
+- [x] 修复 `express.json` 100KB 限制 → 1mb，body-parser 错误标准化为契约 JSON
+- [x] 员工 2 前端未交付（其转发的文件夹实为员工 3 后端），由员工 1 按 §3 完成 `App.tsx` 单页全流程 + `lib/api.ts`
+- [x] 后端 tsc ✅ / 前端 build ✅ / 冒烟测试 10/10 ✅ / 无密钥返回 INTERNAL_ERROR ✅
+- [x] 路演 PPT：`合同体检-路演.pptx`（7 页，含演讲备注）
 
 ## 已完成
 - [x] 推送 AGENTS.md 到 main 分支

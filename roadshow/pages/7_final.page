@@ -1,0 +1,48 @@
+pageType: final
+background:
+  type: solid
+  color: "$ink"
+notes: 收尾 15 秒：核心价值一句话——让普通人在签合同前，花 30 秒贴进来，就能快速知道哪里可能吃亏。然后切到现场演示。
+elements:
+  - elementId: deco-icon
+    elementType: icon
+    bounds: [798, 128, 84, 84]
+    iconName: "fas:file-signature"
+    fill: {type: solid, color: "$brass"}
+  - elementId: manifesto
+    elementType: text
+    bounds: [78, 150, 680, 140]
+    content:
+      fontSize: 40
+      bold: true
+      color: "$base"
+      lineHeight: 1.45
+      align: [left, top]
+      text: |
+        <p>签字之前，</p>
+        <p>先花 30 秒知道哪里可能吃亏。</p>
+  - elementId: m-line
+    elementType: shape
+    bounds: [84, 316, 96, 3]
+    shapeName: rect
+    fill: {type: solid, color: "$brass"}
+  - elementId: demo-cue
+    elementType: text
+    bounds: [80, 340, 400, 30]
+    content:
+      fontSize: 16
+      bold: true
+      color: "$brass"
+      wrap: false
+      align: [left, middle]
+      text: 接下来：现场演示 →
+  - elementId: disclaimer
+    elementType: text
+    bounds: [80, 476, 760, 32]
+    content:
+      fontSize: 10
+      color: "$paleText"
+      lineHeight: 1.5
+      align: [left, top]
+      text: |
+        <p>本工具结果由 AI 生成，仅用于风险提示，不构成法律意见；重要合同请咨询专业律师。</p>

@@ -1,0 +1,140 @@
+pageType: content
+background:
+  type: solid
+  color: "$ink"
+notes: 解法 20 秒：不需要法律背景，不需要逐字读完——粘贴、体检、拿到人话报告，三步。
+elements:
+  - elementId: kicker
+    elementType: text
+    bounds: [70, 44, 220, 18]
+    content:
+      style: "$kicker"
+      wrap: false
+      align: [left, middle]
+      text: 02 · 解法
+  - elementId: title
+    elementType: text
+    bounds: [68, 82, 720, 54]
+    content:
+      fontSize: 38
+      bold: true
+      color: "$base"
+      wrap: false
+      align: [left, middle]
+      text: 30 秒，给合同做一次体检
+  - elementId: subtitle
+    elementType: text
+    bounds: [70, 148, 620, 22]
+    content:
+      fontSize: 14
+      color: "$paleText"
+      wrap: false
+      align: [left, middle]
+      text: 不需要法律背景，不需要逐字读完，粘贴即体检
+  - elementId: flow-line
+    elementType: shape
+    bounds: [90, 262, 780, 1]
+    shapeName: rect
+    fill: {type: solid, color: "$darkLine"}
+  - elementId: s1-num
+    elementType: text
+    bounds: [90, 296, 200, 56]
+    content:
+      fontSize: 44
+      bold: true
+      color: "$brass"
+      wrap: false
+      align: [left, middle]
+      text: "01"
+  - elementId: s1-label
+    elementType: text
+    bounds: [90, 360, 220, 24]
+    content:
+      fontSize: 17
+      bold: true
+      color: "$base"
+      wrap: false
+      align: [left, middle]
+      text: 粘贴合同文本
+  - elementId: s1-desc
+    elementType: text
+    bounds: [90, 390, 230, 40]
+    content:
+      fontSize: 12
+      color: "$paleText"
+      lineHeight: 1.5
+      align: [left, top]
+      text: |
+        <p>选择合同类型与地区，</p>
+        <p>粘贴正文即可</p>
+  - elementId: s2-num
+    elementType: text
+    bounds: [380, 296, 200, 56]
+    content:
+      fontSize: 44
+      bold: true
+      color: "$brass"
+      wrap: false
+      align: [left, middle]
+      text: "02"
+  - elementId: s2-label
+    elementType: text
+    bounds: [380, 360, 220, 24]
+    content:
+      fontSize: 17
+      bold: true
+      color: "$base"
+      wrap: false
+      align: [left, middle]
+      text: AI 逐条体检
+  - elementId: s2-desc
+    elementType: text
+    bounds: [380, 390, 230, 40]
+    content:
+      fontSize: 12
+      color: "$paleText"
+      lineHeight: 1.5
+      align: [left, top]
+      text: |
+        <p>对照 14 类风险分类，</p>
+        <p>逐条扫描不利条款</p>
+  - elementId: s3-num
+    elementType: text
+    bounds: [670, 296, 200, 56]
+    content:
+      fontSize: 44
+      bold: true
+      color: "$brass"
+      wrap: false
+      align: [left, middle]
+      text: "03"
+  - elementId: s3-label
+    elementType: text
+    bounds: [670, 360, 220, 24]
+    content:
+      fontSize: 17
+      bold: true
+      color: "$base"
+      wrap: false
+      align: [left, middle]
+      text: 人话风险报告
+  - elementId: s3-desc
+    elementType: text
+    bounds: [670, 390, 230, 40]
+    content:
+      fontSize: 12
+      color: "$paleText"
+      lineHeight: 1.5
+      align: [left, top]
+      text: |
+        <p>原文摘录 + 人话解释</p>
+        <p>+ 修改建议</p>
+  - elementId: footer
+    elementType: text
+    bounds: [70, 478, 720, 18]
+    content:
+      fontSize: 11
+      color: "$paleText"
+      wrap: false
+      align: [left, middle]
+      text: 支持：租房合同 · 劳动合同 / Offer · 用户协议 · 兼职协议 · 其他

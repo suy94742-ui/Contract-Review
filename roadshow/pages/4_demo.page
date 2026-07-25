@@ -1,0 +1,162 @@
+pageType: content
+background:
+  type: solid
+  color: "$base"
+notes: 实测 60 秒：主 Demo 租房合同，AI 稳定识别 5 个风险、3 高 2 中。重点展开押金不退、高额违约金、房东随时进入这三条。
+elements:
+  - elementId: kicker
+    elementType: text
+    bounds: [70, 44, 220, 18]
+    content:
+      style: "$kicker"
+      wrap: false
+      align: [left, middle]
+      text: 03 · 实测
+  - elementId: title
+    elementType: text
+    bounds: [68, 72, 700, 42]
+    content:
+      fontSize: 28
+      bold: true
+      color: "$ink"
+      wrap: false
+      align: [left, middle]
+      text: 一份"看起来很正常"的租房合同
+  - elementId: big-num
+    elementType: text
+    bounds: [66, 150, 200, 116]
+    content:
+      fontSize: 96
+      bold: true
+      color: "$brass"
+      wrap: false
+      align: [left, middle]
+      text: "5"
+  - elementId: big-num-label
+    elementType: text
+    bounds: [76, 276, 220, 30]
+    content:
+      fontSize: 16
+      bold: true
+      color: "$ink"
+      wrap: false
+      align: [left, middle]
+      text: 个风险条款被识别
+  - elementId: big-num-sub
+    elementType: text
+    bounds: [76, 312, 220, 24]
+    content:
+      fontSize: 14
+      color: "$wine"
+      bold: true
+      wrap: false
+      align: [left, middle]
+      text: 3 高 · 2 中
+  - elementId: overall
+    elementType: text
+    bounds: [76, 352, 240, 24]
+    content:
+      fontSize: 14
+      color: "$ink"
+      wrap: false
+      align: [left, middle]
+      text: |
+        <p>总体评级：<span style="color:$wine"><strong>高（HIGH）</strong></span></p>
+  - elementId: divider
+    elementType: shape
+    bounds: [330, 148, 1, 300]
+    shapeName: rect
+    fill: {type: solid, color: "$lightLine"}
+  - elementId: r1-dot
+    elementType: shape
+    bounds: [362, 156, 8, 8]
+    shapeName: rect
+    fill: {type: solid, color: "$wine"}
+  - elementId: r1-title
+    elementType: text
+    bounds: [380, 148, 510, 24]
+    content:
+      fontSize: 16
+      bold: true
+      color: "$ink"
+      wrap: false
+      align: [left, middle]
+      text: 押金可能无条件不退
+  - elementId: r1-quote
+    elementType: text
+    bounds: [380, 176, 510, 40]
+    content:
+      fontSize: 12
+      color: "$muted"
+      lineHeight: 1.5
+      align: [left, top]
+      text: |
+        <p>原文："无论任何原因退租，押金均不予退还。"</p>
+  - elementId: r1-rule
+    elementType: shape
+    bounds: [362, 232, 528, 1]
+    shapeName: rect
+    fill: {type: solid, color: "$lightLine"}
+  - elementId: r2-dot
+    elementType: shape
+    bounds: [362, 256, 8, 8]
+    shapeName: rect
+    fill: {type: solid, color: "$wine"}
+  - elementId: r2-title
+    elementType: text
+    bounds: [380, 248, 510, 24]
+    content:
+      fontSize: 16
+      bold: true
+      color: "$ink"
+      wrap: false
+      align: [left, middle]
+      text: 提前退租违约金过高
+  - elementId: r2-quote
+    elementType: text
+    bounds: [380, 276, 510, 40]
+    content:
+      fontSize: 12
+      color: "$muted"
+      lineHeight: 1.5
+      align: [left, top]
+      text: |
+        <p>原文："需支付剩余全部租期租金作为违约金，且押金不退。"</p>
+  - elementId: r2-rule
+    elementType: shape
+    bounds: [362, 332, 528, 1]
+    shapeName: rect
+    fill: {type: solid, color: "$lightLine"}
+  - elementId: r3-dot
+    elementType: shape
+    bounds: [362, 356, 8, 8]
+    shapeName: rect
+    fill: {type: solid, color: "$wine"}
+  - elementId: r3-title
+    elementType: text
+    bounds: [380, 348, 510, 24]
+    content:
+      fontSize: 16
+      bold: true
+      color: "$ink"
+      wrap: false
+      align: [left, middle]
+      text: 房东可随时进入房屋
+  - elementId: r3-quote
+    elementType: text
+    bounds: [380, 376, 510, 40]
+    content:
+      fontSize: 12
+      color: "$muted"
+      lineHeight: 1.5
+      align: [left, top]
+      text: |
+        <p>原文："提前 2 小时通知后随时进入房屋进行检查、维修或带人看房。"</p>
+  - elementId: footnote
+    elementType: text
+    bounds: [70, 492, 760, 16]
+    content:
+      style: "$small"
+      wrap: false
+      align: [left, middle]
+      text: 实测数据：主 Demo 示例合同，AI 连续两次运行结构稳定（shared/api/response.example.json）

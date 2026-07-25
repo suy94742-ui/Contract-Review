@@ -1,0 +1,212 @@
+pageType: content
+background:
+  type: solid
+  color: "$base"
+notes: 工程 30 秒：重点讲"AI 会失败，但演示不会"——空输入有提示、超时有兜底、降级有标识、注入有防护、密钥不出后端。
+elements:
+  - elementId: kicker
+    elementType: text
+    bounds: [70, 44, 220, 18]
+    content:
+      style: "$kicker"
+      wrap: false
+      align: [left, middle]
+      text: 05 · 工程
+  - elementId: title
+    elementType: text
+    bounds: [68, 72, 620, 44]
+    content:
+      fontSize: 30
+      bold: true
+      color: "$ink"
+      wrap: false
+      align: [left, middle]
+      text: AI 会失败，但演示不会
+  - elementId: c1-icon
+    elementType: icon
+    bounds: [70, 138, 16, 16]
+    iconName: "fas:circle-check"
+    fill: {type: solid, color: "$brass"}
+  - elementId: c1-text
+    elementType: text
+    bounds: [98, 132, 500, 40]
+    content:
+      fontSize: 13
+      color: "$ink"
+      lineHeight: 1.45
+      align: [left, middle]
+      text: |
+        <p><strong>空输入 / 过短文本</strong>：前端提示 + 后端 INVALID_INPUT 双重校验</p>
+  - elementId: c2-icon
+    elementType: icon
+    bounds: [70, 196, 16, 16]
+    iconName: "fas:clock"
+    fill: {type: solid, color: "$brass"}
+  - elementId: c2-text
+    elementType: text
+    bounds: [98, 190, 500, 40]
+    content:
+      fontSize: 13
+      color: "$ink"
+      lineHeight: 1.45
+      align: [left, middle]
+      text: |
+        <p><strong>AI 超时 25 秒</strong>：返回 AI_TIMEOUT，不暴露内部堆栈</p>
+  - elementId: c3-icon
+    elementType: icon
+    bounds: [70, 254, 16, 16]
+    iconName: "fas:code"
+    fill: {type: solid, color: "$brass"}
+  - elementId: c3-text
+    elementType: text
+    bounds: [98, 248, 500, 40]
+    content:
+      fontSize: 13
+      color: "$ink"
+      lineHeight: 1.45
+      align: [left, middle]
+      text: |
+        <p><strong>AI 返回非 JSON</strong>：返回 AI_INVALID_RESPONSE，页面不白屏</p>
+  - elementId: c4-icon
+    elementType: icon
+    bounds: [70, 312, 16, 16]
+    iconName: "fas:arrows-rotate"
+    fill: {type: solid, color: "$brass"}
+  - elementId: c4-text
+    elementType: text
+    bounds: [98, 306, 500, 40]
+    content:
+      fontSize: 13
+      color: "$ink"
+      lineHeight: 1.45
+      align: [left, middle]
+      text: |
+        <p><strong>AI 不可用</strong>：demo_fallback 明确标识，不伪装成实时分析</p>
+  - elementId: c5-icon
+    elementType: icon
+    bounds: [70, 370, 16, 16]
+    iconName: "fas:shield-halved"
+    fill: {type: solid, color: "$brass"}
+  - elementId: c5-text
+    elementType: text
+    bounds: [98, 364, 500, 40]
+    content:
+      fontSize: 13
+      color: "$ink"
+      lineHeight: 1.45
+      align: [left, middle]
+      text: |
+        <p><strong>提示注入</strong>：合同正文永远只是"不可信数据"，实测未被欺骗</p>
+  - elementId: c6-icon
+    elementType: icon
+    bounds: [70, 428, 16, 16]
+    iconName: "fas:lock"
+    fill: {type: solid, color: "$brass"}
+  - elementId: c6-text
+    elementType: text
+    bounds: [98, 422, 500, 40]
+    content:
+      fontSize: 13
+      color: "$ink"
+      lineHeight: 1.45
+      align: [left, middle]
+      text: |
+        <p><strong>密钥</strong>：只存在后端 .env，不进前端、Git、日志和截图</p>
+  - elementId: arch-label
+    elementType: text
+    bounds: [660, 128, 240, 20]
+    content:
+      fontSize: 12
+      bold: true
+      color: "$brass"
+      wrap: false
+      align: [left, middle]
+      text: 架构一览
+  - elementId: arch-b1
+    elementType: shape
+    bounds: [660, 156, 240, 42]
+    shapeName: rect
+    border: {style: solid, width: 1, color: "$ink"}
+  - elementId: arch-t1
+    elementType: text
+    bounds: [660, 156, 240, 42]
+    content:
+      fontSize: 12
+      color: "$ink"
+      align: [center, middle]
+      wrap: false
+      text: React · Vite · Tailwind
+  - elementId: arch-a1
+    elementType: line
+    bounds: [779, 198, 2, 22]
+    viewBox: [2, 22]
+    points: "1,0 1,22"
+    arrow: [null, "arrow"]
+    border: {style: solid, width: 1, color: "$brass"}
+  - elementId: arch-b2
+    elementType: shape
+    bounds: [660, 220, 240, 42]
+    shapeName: rect
+    border: {style: solid, width: 1, color: "$ink"}
+  - elementId: arch-t2
+    elementType: text
+    bounds: [660, 220, 240, 42]
+    content:
+      fontSize: 12
+      color: "$ink"
+      align: [center, middle]
+      wrap: false
+      text: POST /analyze 契约冻结
+  - elementId: arch-a2
+    elementType: line
+    bounds: [779, 262, 2, 22]
+    viewBox: [2, 22]
+    points: "1,0 1,22"
+    arrow: [null, "arrow"]
+    border: {style: solid, width: 1, color: "$brass"}
+  - elementId: arch-b3
+    elementType: shape
+    bounds: [660, 284, 240, 42]
+    shapeName: rect
+    border: {style: solid, width: 1, color: "$ink"}
+  - elementId: arch-t3
+    elementType: text
+    bounds: [660, 284, 240, 42]
+    content:
+      fontSize: 12
+      color: "$ink"
+      align: [center, middle]
+      wrap: false
+      text: Express 校验 · 标准化
+  - elementId: arch-a3
+    elementType: line
+    bounds: [779, 326, 2, 22]
+    viewBox: [2, 22]
+    points: "1,0 1,22"
+    arrow: [null, "arrow"]
+    border: {style: solid, width: 1, color: "$brass"}
+  - elementId: arch-b4
+    elementType: shape
+    bounds: [660, 348, 240, 42]
+    shapeName: rect
+    border: {style: solid, width: 1, color: "$ink"}
+  - elementId: arch-t4
+    elementType: text
+    bounds: [660, 348, 240, 42]
+    content:
+      fontSize: 12
+      color: "$ink"
+      align: [center, middle]
+      wrap: false
+      text: OpenAI 兼容 API（Kimi）
+  - elementId: arch-note
+    elementType: text
+    bounds: [660, 410, 240, 52]
+    content:
+      fontSize: 10
+      color: "$muted"
+      lineHeight: 1.5
+      align: [left, top]
+      text: |
+        <p>shared/api/analyze.schema.json</p>
+        <p>请求 / 响应 / 错误码全部冻结</p>

@@ -1,0 +1,38 @@
+version: v2
+title: 合同体检 · Demo 路演
+size: [960, 540]
+theme:
+  colors:
+    base: "#F7F3E8"
+    ink: "#123B2F"
+    brass: "#B08D3E"
+    wine: "#7B2D43"
+    muted: "#6B7A70"
+    lightLine: "#D8D0BC"
+    darkLine: "#2A5346"
+    paleText: "#A8B8AF"
+  textStyles:
+    kicker:
+      fontSize: 12
+      color: "$brass"
+      bold: true
+      letterSpacing: 3
+    h1:
+      fontSize: 34
+      color: "$ink"
+      bold: true
+    body:
+      fontSize: 13
+      color: "$ink"
+      lineHeight: 1.5
+    small:
+      fontSize: 10
+      color: "$muted"
+pages:
+  - pages/1_cover.page
+  - pages/2_pain.page
+  - pages/3_solution.page
+  - pages/4_demo.page
+  - pages/5_taxonomy.page
+  - pages/6_engineering.page
+  - pages/7_final.page

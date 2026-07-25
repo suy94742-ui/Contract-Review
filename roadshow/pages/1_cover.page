@@ -1,0 +1,59 @@
+pageType: cover
+background:
+  type: solid
+  color: "$ink"
+notes: 开场 30 秒：这是一个"合同体检"工具——贴一份合同进来，AI 快速找出对你不利的条款，并用普通人能看懂的话解释。
+elements:
+  - elementId: deco-ring
+    elementType: shape
+    bounds: [716, 118, 208, 208]
+    shapeName: ellipse
+    border: {style: solid, width: 1, color: "$darkLine"}
+  - elementId: deco-icon
+    elementType: icon
+    bounds: [775, 177, 90, 90]
+    iconName: "fas:scale-balanced"
+    fill: {type: solid, color: "$brass"}
+  - elementId: kicker
+    elementType: text
+    bounds: [80, 92, 420, 20]
+    content:
+      style: "$kicker"
+      wrap: false
+      align: [left, middle]
+      text: AI 合同风险扫描 · DEMO 路演
+  - elementId: title
+    elementType: text
+    bounds: [76, 146, 560, 104]
+    content:
+      fontSize: 68
+      bold: true
+      color: "$base"
+      wrap: false
+      align: [left, middle]
+      text: 合同体检
+  - elementId: title-line
+    elementType: shape
+    bounds: [82, 262, 96, 3]
+    shapeName: rect
+    fill: {type: solid, color: "$brass"}
+  - elementId: subtitle
+    elementType: text
+    bounds: [80, 288, 620, 64]
+    content:
+      fontSize: 19
+      color: "$base"
+      lineHeight: 1.6
+      align: [left, top]
+      text: |
+        <p>贴一份合同进来，30 秒看清</p>
+        <p>哪些条款可能让你吃亏</p>
+  - elementId: footer
+    elementType: text
+    bounds: [80, 474, 560, 18]
+    content:
+      fontSize: 11
+      color: "$paleText"
+      wrap: false
+      align: [left, middle]
+      text: 五人并行开发 · 2 小时交付 · React + Express + Kimi API

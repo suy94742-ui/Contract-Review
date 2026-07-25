@@ -1,0 +1,141 @@
+pageType: content
+background:
+  type: solid
+  color: "$ink"
+notes: 体检项 20 秒：14 类风险分类，按"钱、权、责、人"四组覆盖常见合同坑。分类体系冻结在 shared/rules/risk-taxonomy.json。
+elements:
+  - elementId: kicker
+    elementType: text
+    bounds: [70, 44, 220, 18]
+    content:
+      style: "$kicker"
+      wrap: false
+      align: [left, middle]
+      text: 04 · 体检项
+  - elementId: title
+    elementType: text
+    bounds: [68, 78, 560, 48]
+    content:
+      fontSize: 34
+      bold: true
+      color: "$base"
+      wrap: false
+      align: [left, middle]
+      text: 14 类风险，一次扫完
+  - elementId: big-num
+    elementType: text
+    bounds: [66, 170, 210, 120]
+    content:
+      fontSize: 100
+      bold: true
+      color: "$brass"
+      wrap: false
+      align: [left, middle]
+      text: "14"
+  - elementId: big-num-caption
+    elementType: text
+    bounds: [76, 302, 200, 44]
+    content:
+      fontSize: 13
+      color: "$paleText"
+      lineHeight: 1.5
+      align: [left, top]
+      text: |
+        <p>类风险分类</p>
+        <p>4 组体检维度</p>
+  - elementId: divider
+    elementType: shape
+    bounds: [300, 160, 1, 300]
+    shapeName: rect
+    fill: {type: solid, color: "$darkLine"}
+  - elementId: g1-label
+    elementType: text
+    bounds: [330, 152, 90, 24]
+    content:
+      fontSize: 16
+      bold: true
+      color: "$brass"
+      wrap: false
+      align: [left, middle]
+      text: 钱
+  - elementId: g1-items
+    elementType: text
+    bounds: [330, 180, 560, 24]
+    content:
+      fontSize: 14
+      color: "$base"
+      wrap: false
+      align: [left, middle]
+      text: 押金 · 违约金 · 赔偿 · 自动续期 / 扣费
+  - elementId: g1-rule
+    elementType: shape
+    bounds: [330, 224, 560, 1]
+    shapeName: rect
+    fill: {type: solid, color: "$darkLine"}
+  - elementId: g2-label
+    elementType: text
+    bounds: [330, 242, 90, 24]
+    content:
+      fontSize: 16
+      bold: true
+      color: "$brass"
+      wrap: false
+      align: [left, middle]
+      text: 权
+  - elementId: g2-items
+    elementType: text
+    bounds: [330, 270, 560, 24]
+    content:
+      fontSize: 14
+      color: "$base"
+      wrap: false
+      align: [left, middle]
+      text: 单方变更 · 单方解除 · 房屋 / 财产进入权
+  - elementId: g2-rule
+    elementType: shape
+    bounds: [330, 314, 560, 1]
+    shapeName: rect
+    fill: {type: solid, color: "$darkLine"}
+  - elementId: g3-label
+    elementType: text
+    bounds: [330, 332, 90, 24]
+    content:
+      fontSize: 16
+      bold: true
+      color: "$brass"
+      wrap: false
+      align: [left, middle]
+      text: 责
+  - elementId: g3-items
+    elementType: text
+    bounds: [330, 360, 560, 24]
+    content:
+      fontSize: 14
+      color: "$base"
+      wrap: false
+      align: [left, middle]
+      text: 过度免责 · 仲裁 · 管辖
+  - elementId: g3-rule
+    elementType: shape
+    bounds: [330, 404, 560, 1]
+    shapeName: rect
+    fill: {type: solid, color: "$darkLine"}
+  - elementId: g4-label
+    elementType: text
+    bounds: [330, 422, 90, 24]
+    content:
+      fontSize: 16
+      bold: true
+      color: "$brass"
+      wrap: false
+      align: [left, middle]
+      text: 人
+  - elementId: g4-items
+    elementType: text
+    bounds: [330, 450, 560, 24]
+    content:
+      fontSize: 14
+      color: "$base"
+      wrap: false
+      align: [left, middle]
+      text: 隐私 · 竞业限制 · 保密 · 其他
