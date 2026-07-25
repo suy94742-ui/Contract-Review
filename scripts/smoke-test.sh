@@ -33,7 +33,14 @@ RESP=$(curl -s -X POST "$BASE_URL/analyze" \
   -H "Content-Type: application/json" \
   -d '{"contractType":"rental","region":"上海","text":"房屋租赁合同。甲方王某，乙方李某。租赁期限2024年1月1日至12月31日。每月租金5000元，押金10000元。无论任何原因退租，押金均不予退还。"}')
 check_json "$RESP" "overallRisk" "high"
-check_json "$RESP" "source" "demo_fallback"
+SOURCE=$(echo "$RESP" | python3 -c "import sys,json; print(json.load(sys.stdin).get('source',''))" 2>/dev/null)
+if [ "$SOURCE" = "ai" ] || [ "$SOURCE" = "demo_fallback" ]; then
+  echo "  ✓ source = $SOURCE"
+  ((PASS++))
+else
+  echo "  ✗ source 非法 (期望 ai|demo_fallback, 实际: $SOURCE)"
+  ((FAIL++))
+fi
 check_json "$RESP" "requestId" "req_"
 RISK_COUNT=$(echo "$RESP" | python3 -c "import sys,json; print(len(json.load(sys.stdin).get('risks',[])))")
 if [ "$RISK_COUNT" -gt 0 ]; then
@@ -97,11 +104,11 @@ RESP=$(curl -s -w "\n%{http_code}" -X POST "$BASE_URL/analyze" \
   -H "Content-Type: application/json" \
   -d "{\"contractType\":\"rental\",\"text\":\"$LONG_TEXT\"}")
 HTTP_CODE=$(echo "$RESP" | tail -n1)
-if [ "$HTTP_CODE" = "413" ] || [ "$HTTP_CODE" = "200" ]; then
-  echo "  ✓ HTTP $HTTP_CODE (413=正确, 200=临时接口)"
+if [ "$HTTP_CODE" = "413" ]; then
+  echo "  ✓ HTTP 413"
   ((PASS++))
 else
-  echo "  ✗ 期望 HTTP 413, 实际 $HTTP_CODE"
+  echo "  ✗ 期望 HTTP 413 (TEXT_TOO_LONG), 实际 $HTTP_CODE"
   ((FAIL++))
 fi
 echo ""
@@ -112,11 +119,11 @@ RESP=$(curl -s -w "\n%{http_code}" -X POST "$BASE_URL/analyze" \
   -H "Content-Type: application/json" \
   -d '{"contractType":"invalid","text":"测试合同内容至少需要二十个字符以上"}')
 HTTP_CODE=$(echo "$RESP" | tail -n1)
-if [ "$HTTP_CODE" = "400" ] || [ "$HTTP_CODE" = "200" ]; then
-  echo "  ✓ HTTP $HTTP_CODE (400=正确, 200=临时接口)"
+if [ "$HTTP_CODE" = "400" ]; then
+  echo "  ✓ HTTP 400"
   ((PASS++))
 else
-  echo "  ✗ 期望 HTTP 400, 实际 $HTTP_CODE"
+  echo "  ✗ 期望 HTTP 400 (INVALID_INPUT), 实际 $HTTP_CODE"
   ((FAIL++))
 fi
 echo ""
