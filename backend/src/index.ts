@@ -1,37 +1,48 @@
-import express from 'express'
-import cors from 'cors'
-import dotenv from 'dotenv'
-import { readFileSync } from 'fs'
-import { join, dirname } from 'path'
-import { fileURLToPath } from 'url'
+import dotenv from "dotenv";
+import express, { Request, Response, NextFunction } from "express";
+import cors from "cors";
+import { healthRouter } from "./routes/health.js";
+import { analyzeRouter } from "./routes/analyze.js";
 
-dotenv.config()
+dotenv.config();
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
-const app = express()
+const app = express();
+const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3001;
 
-app.use(cors())
-app.use(express.json({ limit: '1mb' }))
+app.use(cors({ origin: true }));
+// 50,000 个中文字符约 150KB，留足余量；超限统一由下方错误中间件处理
+app.use(express.json({ limit: "1mb" }));
 
-// 健康检查
-app.get('/health', (_req, res) => {
-  res.json({ status: 'ok' })
-})
+app.use(healthRouter);
+app.use(analyzeRouter);
 
-// TODO: 员工 3 实现完整的 POST /analyze
-// 当前为临时固定响应，用于前端联调
-app.post('/analyze', (_req, res) => {
-  const exampleResponse = JSON.parse(
-    readFileSync(join(__dirname, '../../shared/api/response.example.json'), 'utf-8')
-  )
-  res.json({
-    ...exampleResponse,
-    requestId: `req_${Date.now()}`,
-    source: 'demo_fallback' as const,
-  })
-})
+// body-parser 错误标准化为契约错误结构
+app.use((err: unknown, _req: Request, res: Response, next: NextFunction) => {
+  const e = err as { type?: string };
+  const requestId = `req_${Date.now().toString(36)}`;
+  if (e?.type === "entity.too.large") {
+    res.status(413).json({
+      error: {
+        code: "TEXT_TOO_LONG",
+        message: "合同内容超过 50,000 字符限制。",
+        requestId,
+      },
+    });
+    return;
+  }
+  if (e?.type === "entity.parse.failed") {
+    res.status(400).json({
+      error: {
+        code: "INVALID_INPUT",
+        message: "请求 JSON 格式不正确。",
+        requestId,
+      },
+    });
+    return;
+  }
+  next(err);
+});
 
-const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
-  console.log(`Backend listening on http://localhost:${PORT}`)
-})
+  console.log(`Backend running on http://localhost:${PORT}`);
+});
