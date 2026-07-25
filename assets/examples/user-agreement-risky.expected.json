@@ -1,25 +1,29 @@
 {
-  "description": "用户协议期望识别结果（TODO: 员工 4 完善）",
   "expectedRisks": [
-    {
-      "category": "unilateral_change",
-      "level": "high",
-      "expectedOriginalText": "我们有权随时修改本协议，修改后的协议在平台公布时立即生效，无需另行通知您。"
-    },
     {
       "category": "automatic_renewal",
       "level": "high",
-      "expectedOriginalText": "订阅到期前 24 小时，系统将自动从您绑定的支付账户扣取下期费用。"
+      "expectedOriginalText": "会员到期前 24 小时，平台将按原支付渠道自动扣收下一周期费用并续期；用户须在扣费前至少 72 小时通过客服申请关闭自动续费，逾期申请不予处理。"
+    },
+    {
+      "category": "unilateral_change",
+      "level": "high",
+      "expectedOriginalText": "平台可根据运营需要随时修改本协议、会员价格及服务内容，修改后的内容一经公布即对所有用户生效，用户继续使用即视为接受。"
     },
     {
       "category": "liability_exemption",
-      "level": "medium",
-      "expectedOriginalText": "对于用户因使用本服务而遭受的任何直接或间接损失，我们均不承担责任。"
+      "level": "high",
+      "expectedOriginalText": "因系统故障、数据丢失、第三方服务中断或其他任何原因造成的损失，平台均不承担赔偿责任。"
     },
     {
       "category": "privacy",
       "level": "high",
-      "expectedOriginalText": "您同意我们收集、使用、存储您的个人信息，并授权我们将这些信息提供给我们的关联公司及合作伙伴用于商业推广。"
+      "expectedOriginalText": "用户同意平台收集其设备信息、精确位置、通讯录、浏览记录和交易记录，并可基于商业合作目的向关联公司及合作伙伴共享，无需另行征得用户同意。"
+    },
+    {
+      "category": "jurisdiction",
+      "level": "medium",
+      "expectedOriginalText": "因本协议产生的任何争议，用户同意由平台住所地有管辖权的人民法院处理。"
     }
   ]
 }

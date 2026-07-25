@@ -1,27 +1,41 @@
 # 示例合同目录
 
-## 文件说明
+这些文件用于合同体检 Demo 的 Prompt 调试、后端显式降级匹配和 UI 验收。内容均为虚构演示样例，仅用于风险提示测试，不构成法律意见，也不对应真实个人或企业。
 
-| 文件 | 说明 | 责任人 |
-|---|---|---|
-| `rental-risky.txt` | 主 Demo 合同：租房合同，含 6 个典型风险 | 员工 4 |
-| `rental-risky.expected.json` | 期望 AI 识别结果 | 员工 4 |
-| `employment-risky.txt` | 备用 Demo：劳动合同/Offer | 员工 4 |
-| `employment-risky.expected.json` | 期望结果 | 员工 4 |
-| `user-agreement-risky.txt` | 备用 Demo：APP 用户协议 | 员工 4 |
-| `user-agreement-risky.expected.json` | 期望结果 | 员工 4 |
+## 文件与请求参数
 
-## 使用方式
+| 合同文件 | `contractType` | 建议 `region` | 用途 |
+|---|---|---|---|
+| `rental-risky.txt` | `rental` | `上海` | 主 Demo；预期识别 5 个核心风险 |
+| `employment-risky.txt` | `employment` | `上海` | 备用 Demo；预期识别 5 个核心风险 |
+| `user-agreement-risky.txt` | `user_agreement` | 空字符串 | 备用 Demo；预期识别 5 个核心风险 |
 
-1. 主 Demo 联调时，使用 `rental-risky.txt` 作为输入
-2. `*.expected.json` 中的 `expectedOriginalText` 必须能在对应 `.txt` 中逐字找到
-3. AI 输出不必与 expected 完全一致，但 category 和 level 应对应
+主 Demo 固定为 `rental-risky.txt`。其风险点覆盖押金、提前退租违约金、房东进入权、广泛免责和自动续期。正文刻意避免额外加入隐私、单方解除、仲裁或管辖风险，以便将核心输出稳定控制在 4～6 个。
 
-## 主 Demo 合同风险速览（rental-risky.txt）
+## `*.expected.json` 结构
 
-1. **押金不退**（high）— 无论任何原因退租，押金均不予退还
-2. **高额违约金**（high）— 提前退租需付全部剩余租金
-3. **房东随时进入**（high）— 仅提前 2 小时通知
-4. **过度免责**（medium）— 设施老化导致损失不承担责任
-5. **自动续期**（medium）— 期满自动续期一年，涨幅无上限
-6. **偏向仲裁**（medium）— 甲方所在地仲裁，终局裁决
+每个期望文件只维护以下三个判断字段：
+
+```json
+{
+  "expectedRisks": [
+    {
+      "category": "deposit",
+      "level": "high",
+      "expectedOriginalText": "必须能在对应合同正文中逐字找到的句子或短摘录"
+    }
+  ]
+}
+```
+
+- `category` 必须与 `shared/rules/risk-taxonomy.json` 中的 `categories[].id` 一致。
+- `level` 只能是 `high`、`medium` 或 `low`。
+- `expectedOriginalText` 必须逐字出现在同名合同文件中。
+- 标题、解释、建议、ID、计数和免责声明不在期望文件中写死，由 AI 或后端按冻结契约生成和标准化。
+- 验收关注核心类别和等级是否命中，不要求 AI 的标题、解释或建议逐字一致。
+
+## 使用边界
+
+- 后端只有在显式设置 `DEMO_FALLBACK=true` 时才可把这些数据用于演示降级。
+- 降级响应必须标记 `source: "demo_fallback"`，不得冒充实时 AI 分析。
+- 示例中的风险级别是 Demo 测试预期，不是对真实合同效力的确定结论。
