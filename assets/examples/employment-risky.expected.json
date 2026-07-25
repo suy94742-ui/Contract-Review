@@ -1,0 +1,25 @@
+{
+  "description": "劳动合同期望识别结果（TODO: 员工 4 完善）",
+  "expectedRisks": [
+    {
+      "category": "unilateral_change",
+      "level": "high",
+      "expectedOriginalText": "甲方有权根据经营需要单方调整乙方的工作岗位、工作地点及薪酬标准，乙方应无条件服从。"
+    },
+    {
+      "category": "non_compete",
+      "level": "high",
+      "expectedOriginalText": "乙方在职期间及离职后 3 年内，不得在与甲方有竞争关系的单位工作"
+    },
+    {
+      "category": "confidentiality",
+      "level": "medium",
+      "expectedOriginalText": "不得泄露任何公司信息"
+    },
+    {
+      "category": "termination",
+      "level": "high",
+      "expectedOriginalText": "甲方可在提前 3 日通知乙方后解除合同，无需说明理由。"
+    }
+  ]
+}
